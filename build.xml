@@ -1,0 +1,29 @@
+<project name="CountThrees" default="Count3s" basedir=".">
+
+    <description>
+        The compile and run Count3s
+    </description>
+
+    <!-- global properties for this build file -->
+    <property name="source.dir" location="." />
+    <property name="build.dir" location="build" />
+    <property name="classes.dir" location="${build.dir}/classes" />
+    <property name="jar.dir" location="${build.dir}/jar" />
+    <property name="main-class" value="CountThrees" />
+
+    <target name="Count3s" description="compile Count3s">
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${jar.dir}" />
+        <javac includeantruntime="false" srcdir="${source.dir}" destdir="${classes.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}" >
+             <manifest>
+		<attribute name="Main-Class" value="${main-class}" />
+	     </manifest>
+	</jar>
+    </target>
+
+    <target name="runCount3s">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+</project>
